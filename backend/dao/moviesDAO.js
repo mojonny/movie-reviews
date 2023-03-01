@@ -1,3 +1,6 @@
+import mongodb from 'mongodb';
+const ObjectId = mongodb.ObjectId;
+
 //store the db reference in movies. This gives us access to the db
 let movies;
 
@@ -42,6 +45,42 @@ export default class MoviesDAO {
 		} catch (e) {
 			console.error(`Unable to issue find command, ${e}`);
 			return { moviesList: [], totalNumMovies: 0 };
+		}
+	}
+
+	static async getRatings() {
+		let ratings = [];
+		try {
+			ratings = await movies.distinct('rated');
+			return ratings;
+		} catch (e) {
+			console.error(`unable to get ratings, ${e}`);
+			return ratings;
+		}
+	}
+
+	static async getMovieById(id) {
+		try {
+			return await movies
+				.aggregate([
+					{
+						$match: {
+							_id: new ObjectId(id),
+						},
+					},
+					{
+						$lookup: {
+							from: 'reviews', //collection to join
+							localField: '_id',
+							foreignField: 'movie_id',
+							as: 'reviews', //output array field
+						},
+					},
+				])
+				.next();
+		} catch (e) {
+			console.error(`something went wrong with getMovieById: ${e}`);
+			throw e;
 		}
 	}
 }

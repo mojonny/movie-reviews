@@ -2,14 +2,14 @@ import express from 'express';
 import cors from 'cors';
 import movies from './api/movies.route.js';
 
-//create the server with:
+//Create the server with express
 const app = express();
 
-//Which will use cors and express.json
+//Which will use cors(cross-origin...) and express.json
 app.use(cors());
 app.use(express.json());
 
-//specify initial routes
+//specify initial routes for the url paths
 app.use('/api/v1/movies', movies);
 app.use('*', (req, res) => {
 	//if request isn't fulfilled, alert user with error
