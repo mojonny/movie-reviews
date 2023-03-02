@@ -54,7 +54,7 @@ export default class MoviesDAO {
 			ratings = await movies.distinct('rated');
 			return ratings;
 		} catch (e) {
-			console.error(`unable to get ratings, ${e}`);
+			console.error(`Unable to get ratings, ${e}`);
 			return ratings;
 		}
 	}

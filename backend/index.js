@@ -10,10 +10,7 @@ async function main() {
 
 	//create an instance of MongoClient and pass in uri
 	//retrieve the port from the env variable. If we can't try 8000
-	const client = new mongodb.MongoClient(process.env.MOVIEREVIEWS_DB_URI, {
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
-	});
+	const client = new mongodb.MongoClient(process.env.MOVIEREVIEWS_DB_URI);
 
 	const port = process.env.PORT || 8000;
 
@@ -29,6 +26,7 @@ async function main() {
 			console.log('Server is running on port:' + port);
 		});
 	} catch (e) {
+		console.log('Not connected!');
 		console.error(e);
 		process.exit(1);
 	}

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import MovieDataService from '../services/movies';
+import { getAll, getRatings } from '../services/movies';
 import { Link } from 'react-router-dom';
 
-export default function MoviesList(props) {
+export default function MoviesList() {
 	const [movies, setMovies] = useState([]);
 	const [searchTitle, setSearchTitle] = useState('');
 	const [searchRating, setSearchRating] = useState('');
@@ -14,24 +14,26 @@ export default function MoviesList(props) {
 	}, []);
 
 	const retrieveMovies = () => {
-		MovieDataService.getAll()
+		getAll()
 			.then((response) => {
 				console.log(response.data);
 				setMovies(response.data.movies);
 			})
 			.catch((e) => {
 				console.log(e);
+				console.log('retrieve movies error/get all');
 			});
 	};
 
 	const retrieveRatings = () => {
-		MovieDataService.getRatings()
+		getRatings()
 			.then((response) => {
 				console.log(response.data);
 				setRatings(['All Ratings'].concat(response.data));
 			})
 			.catch((e) => {
 				console.log(e);
+				console.log('retrieve ratings error/get all');
 			});
 	};
 
@@ -46,7 +48,7 @@ export default function MoviesList(props) {
 	};
 
 	const find = (query, by) => {
-		MovieDataService.find(query, by)
+		find(query, by)
 			.then((response) => {
 				console.log(response.data);
 				setMovies(response.data.movies);
@@ -87,7 +89,7 @@ export default function MoviesList(props) {
 						</button>
 					</div>
 					<div>
-						<select onChange={onChangeSearchRating}>
+						<div onChange={onChangeSearchRating}>
 							{ratings.map((rating, index) => {
 								return (
 									<option key={index} value={rating}>
@@ -95,7 +97,7 @@ export default function MoviesList(props) {
 									</option>
 								);
 							})}
-						</select>
+						</div>
 						<button type="button" onClick={findByRating}>
 							Search
 						</button>

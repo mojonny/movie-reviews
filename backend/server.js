@@ -14,7 +14,6 @@ app.use('/api/v1/movies', movies);
 app.use('*', (req, res) => {
 	//if request isn't fulfilled, alert user with error
 	res.status(404).json({ error: 'not found' });
-	console.log('ADADASDADSASADSADASDSAa');
 });
 
 //export as module so other files can import it
