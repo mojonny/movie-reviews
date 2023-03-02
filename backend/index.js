@@ -9,7 +9,7 @@ async function main() {
 	dotenv.config();
 
 	//create an instance of MongoClient and pass in uri
-	//retrieve the port from the env variable. If we can't try 8000
+	//retrieve the port from the env variable. If we can't ,try 8000
 	const client = new mongodb.MongoClient(process.env.MOVIEREVIEWS_DB_URI);
 
 	const port = process.env.PORT || 8000;

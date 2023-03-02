@@ -2,24 +2,31 @@ import './App.css';
 import AddReview from './components/addReview';
 import MoviesList from './components/moviesList';
 import Movie from './components/movie';
-//import Login from './components/login';
-import { Route, Routes } from 'react-router-dom';
-// import { useState } from 'react';
+import Home from './components/home';
+import Login from './components/login';
+import { Link, Route, Routes } from 'react-router-dom';
+import { useState } from 'react';
 
 function App() {
-	// const [user, setUser] = useState(null);
+	const [user, setUser] = useState(null);
 
-	// async function login(user = null) {
-	// 	setUser(user);
-	// }
+	async function login(user = null) {
+		setUser(user);
+	}
 
-	// async function logout() {
-	// 	setUser(null);
-	// }
+	async function logout() {
+		setUser(null);
+	}
 	return (
 		<div className="App">
-			{/* <nav>
-				<ul>
+			<nav>
+				<ul
+					style={{
+						display: 'flex',
+						gap: '50px',
+						listStyleType: 'none',
+					}}
+				>
 					<li>
 						<Link to="/movies">Movies</Link>
 					</li>
@@ -31,14 +38,16 @@ function App() {
 						)}
 					</li>
 				</ul>
-			</nav> */}
+			</nav>
 
 			<Routes>
-				<Route path="/" element={<MoviesList />} />
-				{/* <Route path="/movies" element={<MoviesList />} /> */}
-				<Route path="/movies/:id/review" element={<AddReview />} />
-				<Route path="/movies/:id/" element={<Movie />} />
-				{/* <Route path="/login" element={<Login login={login} />} /> */}
+				<Route path="/" element={<Home />} />
+				<Route path="/movies">
+					<Route index element={<MoviesList />} />
+					<Route path=":id/" element={<Movie />} />
+					<Route path=":id/review" element={<AddReview />} />
+				</Route>
+				<Route path="/login" element={<Login login={login} />} />
 			</Routes>
 		</div>
 	);
