@@ -114,7 +114,7 @@ export default function MoviesList() {
 						margin: '10px 20px 20px 10px',
 					}}
 				>
-					<h1>Movie Search!</h1>
+					<h1 className="text-3xl font-bold underline">Movie Search!</h1>
 					<div
 						style={{
 							display: 'flex',
