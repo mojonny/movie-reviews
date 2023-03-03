@@ -27,6 +27,20 @@ export default function Movie(props) {
 		getMovie(`${id}`);
 	}, [id]);
 
+	const deleteReview = (reviewId, index) => {
+		MovieDataService.deleteReview(reviewId, props.user.id)
+			.then((response) => {
+				setMovie((prevState) => {
+					prevState.reviews.splice(index, 1);
+					return {
+						...prevState,
+					};
+				});
+			})
+			.catch((e) => {
+				console.log(e);
+			});
+	};
 	return (
 		<div>
 			<div>
@@ -59,7 +73,9 @@ export default function Movie(props) {
 												Edit
 											</Link>
 											<br />
-											<button>Delete</button>
+											<button onClick={() => deleteReview(review._id, index)}>
+												Delete
+											</button>
 										</div>
 									)}
 								</div>

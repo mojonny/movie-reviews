@@ -33,8 +33,7 @@ export default function AddReview(props) {
 		};
 		if (editing) {
 			//get existing review id
-			data.review_id = state.currentReview._id;
-			console.log(state.currentReview._id);
+			data.review_id = state.currentReview._id; //review_id is found in reviewsDAO
 			MovieDataService.updateReview(data)
 				.then((response) => {
 					setSubmitted(true);

@@ -64,7 +64,7 @@ export default class ReviewsDAO {
 			//Insert the reviewDoc doc object into the reviews collection using the insertOne method
 			return deleteResponse;
 		} catch (e) {
-			console.error(`unable to delete that review right now: ${e}`);
+			console.error(`Unable to delete that review right now: ${e}`);
 			return { error: e };
 		}
 	}

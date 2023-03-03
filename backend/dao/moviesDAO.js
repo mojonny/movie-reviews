@@ -14,7 +14,7 @@ export default class MoviesDAO {
 		try {
 			movies = await conn.db(process.env.MOVIEREVIEWS_NS).collection('movies');
 		} catch (e) {
-			console.error(`unable to connect in MoviesDAO: ${e}`);
+			console.error(`Unable to connect in MoviesDAO: ${e}`);
 		}
 	}
 
@@ -79,7 +79,7 @@ export default class MoviesDAO {
 				])
 				.next();
 		} catch (e) {
-			console.error(`something went wrong with getMovieById: ${e}`);
+			console.error(`Something went wrong with getMovieById: ${e}`);
 			throw e;
 		}
 	}
