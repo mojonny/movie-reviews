@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import MovieDataService from '../services/movies';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 
 export default function AddReview(props) {
 	let editing = false;
 	let initialReviewState = '';
 
-	// if (props.location.state && props.location.state.currentReview) {
-	// 	editing = true;
-	// 	initialReviewState = props.location.state.currentReview.review;
-	// }
-
 	const [review, setReview] = useState(initialReviewState); //tracks if submitted
 	const [submitted, setSubmitted] = useState(false);
+
+	const location = useLocation();
+	const state = location.state;
+
+	if (state && state.currentReview) {
+		editing = true;
+		initialReviewState = state.currentReview;
+	}
 
 	const onChangeReview = (e) => {
 		const review = e.target.value;
@@ -29,8 +32,9 @@ export default function AddReview(props) {
 			movie_id: { id }, //get movie if from the url
 		};
 		if (editing) {
-			//get existing review
-			data.review_id = props.location.state.currentReview.user_id;
+			//get existing review id
+			data.review_id = state.currentReview._id;
+			console.log(state.currentReview._id);
 			MovieDataService.updateReview(data)
 				.then((response) => {
 					setSubmitted(true);
@@ -58,14 +62,14 @@ export default function AddReview(props) {
 				</div>
 			) : (
 				<div>
-					<label>{editing ? 'Edit' : 'Create'} Review</label>
+					<label>{editing ? 'Edit' : 'Create'} Review </label>
 					<input
 						type="text"
 						required
 						value={review}
 						onChange={onChangeReview}
 					/>
-					<button onClick={saveReview}>Submit Review</button>
+					<button onClick={saveReview}> Submit Review </button>
 				</div>
 			)}
 		</div>

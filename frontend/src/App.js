@@ -44,6 +44,7 @@ function App() {
 				<Route path="/movies">
 					<Route index element={<MoviesList user={user} />} />
 					<Route path=":id/" element={<Movie user={user} />} />
+
 					<Route path=":id/review" element={<AddReview user={user} />} />
 				</Route>
 				<Route path="/login" element={<Login login={login} />} />

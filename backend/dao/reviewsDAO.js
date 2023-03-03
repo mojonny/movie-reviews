@@ -33,7 +33,7 @@ export default class ReviewsDAO {
 			//Insert the reviewDoc doc object into the reviews collection using the insertOne method
 			return await reviews.insertOne(reviewDoc);
 		} catch (e) {
-			console.error(`unable to post the review my friend: ${e}`);
+			console.error(`Unable to post the review my friend: ${e}`);
 			return { error: e };
 		}
 	}
@@ -49,7 +49,7 @@ export default class ReviewsDAO {
 			//Insert the reviewDoc doc object into the reviews collection using the insertOne method
 			return updateResponse;
 		} catch (e) {
-			console.error(`unable to update the reviews today: ${e}`);
+			console.error(`Unable to update the reviews today: ${e}`);
 			return { error: e };
 		}
 	}

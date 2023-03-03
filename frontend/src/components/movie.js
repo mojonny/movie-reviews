@@ -53,10 +53,8 @@ export default function Movie(props) {
 									{props.user && props.user.id === review.user_id && (
 										<div>
 											<Link
-												to={{
-													pathname: '/movies/' + id + '/review',
-													state: { currentReview: review },
-												}}
+												to={'/movies/' + id + '/review'}
+												state={{ currentReview: review }}
 											>
 												Edit
 											</Link>

@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login(props) {
 	const [name, setName] = useState('');
 	const [id, setId] = useState('');
+
+	const navigate = useNavigate();
 
 	const onChangeName = (e) => {
 		const name = e.target.value;
@@ -16,7 +19,7 @@ export default function Login(props) {
 
 	const login = () => {
 		props.login({ name: name, id: id });
-		props.history.push('/');
+		navigate('/');
 	};
 	return (
 		<div>
