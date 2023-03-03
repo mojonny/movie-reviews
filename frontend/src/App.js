@@ -2,7 +2,6 @@ import './App.css';
 import AddReview from './components/addReview';
 import MoviesList from './components/moviesList';
 import Movie from './components/movie';
-import Home from './components/home';
 import Login from './components/login';
 import { Link, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
@@ -41,11 +40,11 @@ function App() {
 			</nav>
 
 			<Routes>
-				<Route path="/" element={<Home />} />
+				<Route path="/" element={<MoviesList user={user} />} />
 				<Route path="/movies">
-					<Route index element={<MoviesList />} />
-					<Route path=":id/" element={<Movie />} />
-					<Route path=":id/review" element={<AddReview />} />
+					<Route index element={<MoviesList user={user} />} />
+					<Route path=":id/" element={<Movie user={user} />} />
+					<Route path=":id/review" element={<AddReview user={user} />} />
 				</Route>
 				<Route path="/login" element={<Login login={login} />} />
 			</Routes>

@@ -30,7 +30,8 @@ export default function Movie(props) {
 	return (
 		<div>
 			<div>
-				<h1>Movie Details {id}</h1>
+				<h1>Movie Details</h1>
+				<h2>{movie.title}</h2>
 				<div>
 					<img src={movie.poster} alt="movie poster" />
 				</div>
@@ -38,14 +39,11 @@ export default function Movie(props) {
 					<div>{movie.title}</div>
 					<div>{movie.plot}</div>
 					{props.user && (
-						<Link to={'/movies/' + props.match.params.id + '/review'}>
-							Add review
-						</Link>
+						<Link to={'/movies/' + id + '/review'}>Add review</Link>
 					)}
 				</div>
 				<div>
 					<h2>Reviews</h2>
-					<br />
 					{movie.reviews.map((review, index) => {
 						return (
 							<div key={index}>
@@ -56,8 +54,7 @@ export default function Movie(props) {
 										<div>
 											<Link
 												to={{
-													pathname:
-														'/movies/' + props.match.params.id + '/review',
+													pathname: '/movies/' + id + '/review',
 													state: { currentReview: review },
 												}}
 											>
