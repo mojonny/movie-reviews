@@ -22,26 +22,35 @@ export default function Login(props) {
 		navigate('/');
 	};
 	return (
-		<div>
-			<div>
-				<label>Username </label>
-				<input
-					type="text"
-					placeholder="Enter username"
-					value={name}
-					onChange={onChangeName}
-				/>
+		<div className="bg-pink p-5 pt-32 min-w-full min-h-screen fixed">
+			<div className="flex-col bg-dark-green p-5 w-80 rounded-xl shadow-xl mx-auto">
+				<div>
+					<label className="font-bold p-5">Username </label>
+					<input
+						type="text"
+						className="bg-pink p-5 m-2 rounded-md text-purple placeholder:text-white"
+						placeholder="Enter username"
+						value={name}
+						onChange={onChangeName}
+					/>
+				</div>
+				<div>
+					<label className="font-bold p-5">User ID </label>
+					<input
+						className="bg-pink p-5 m-2 rounded-md text-purple placeholder:text-white"
+						type="text"
+						placeholder="Enter id"
+						value={id}
+						onChange={onChangeId}
+					/>
+				</div>
+				<button
+					className="mt-2 rounded-md py-3 px-5 w-full text-md text-purple bg-pink font-semibold shadow-lg hover:bg-purple hover:text-white "
+					onClick={login}
+				>
+					Log me in!
+				</button>
 			</div>
-			<div>
-				<label>User ID </label>
-				<input
-					type="text"
-					placeholder="Enter id"
-					value={id}
-					onChange={onChangeId}
-				/>
-			</div>
-			<button onClick={login}>Log me in!</button>
 		</div>
 	);
 }

@@ -95,80 +95,73 @@ export default function MoviesList() {
 	}, [currentPage]);
 
 	return (
-		<div className="bg-emerald-700 p-5">
-			<h1 className="m-10 text-4xl text-blue-200 underline first-letter:text-9xl font-bold p-5 bg-blue-600 border-8 border-blue-900 rounded-2xl shadow-lg">
-				Movie Search!
-			</h1>
-
-			<div className="flex-col justify-center bg-blue-900 border-solid border-blue-600 max-h-full rounded-lg shadow-xl space-y-10 p-5 mx-10 my-20">
-				<div className="text-3xl text-blue-100 font-bold"> Search by title</div>
-				<div className="flex justify-center space-x-5">
-					<input
-						type="text"
-						placeholder="Search by title"
-						value={searchTitle}
-						onChange={onChangeSearchTitle}
-						className="p-5 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none w-96"
-					/>
-					<button
-						type="button"
-						onClick={findByTitle}
-						className=" justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-md font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-blue-800 hover:text-slate-200"
-					>
-						Search
-					</button>
+		<div className="p-5 flex-col justify-center">
+			<div className=" bg-film bg-contain p-40 pb-64 pt-20 text-purple -mb-60 border-solid border-8 border-pink">
+				<div className="text-2xl font-bold bg-none p-5 text-white">
+					Looking for a movie?
+				</div>
+				<div className="text-2xl font-bold bg-none text-white ml-10">
+					We can help with that...
+				</div>
+			</div>
+			<div className="-z-10 flex gap-10 items-center max-w-fit p-5 mt-40 rounded-xl shadow-xl -translate-y-40 bg-purple m-auto">
+				<div>
+					<div className="text-3xl text-green p-2 font-bold">
+						Search by title
+					</div>
+					<div className="flex justify-center space-x-2">
+						<input
+							type="text"
+							placeholder="Search by title"
+							value={searchTitle}
+							onChange={onChangeSearchTitle}
+							className="text-lg bg-green p-2 rounded-md shadow-lg w-full placeholder:text-purple"
+						/>
+						<button
+							type="button"
+							onClick={findByTitle}
+							className=" justify-center gap-x-1.5 rounded-md p-1 text-md text-green bg-dark-green font-semibold shadow-sm hover:bg-pink hover:text-purple "
+						>
+							Search
+						</button>
+					</div>
 				</div>
 
-				<div className="text-xl text-blue-100 font-bold"> -- OR --</div>
-
-				<div className="text-3xl text-blue-100 font-bold">
-					{' '}
-					Search by rating
-				</div>
-				<div className="flex justify-center space-x-5">
-					<select
-						onChange={onChangeSearchRating}
-						className="w-96 p-5 rounded-md bg-white shadow-lg "
-					>
-						{ratings.map((rating, index) => {
-							return (
-								<option key={index} value={rating}>
-									{rating}
-								</option>
-							);
-						})}
-					</select>
-					<button
-						type="button"
-						onClick={findByRating}
-						className=" justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-md font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-blue-800 hover:text-slate-200"
-					>
-						Search
-					</button>
+				<div className="text-lg text-green font-bold">OR</div>
+				<div className="flex-col">
+					<div className="text-3xl text-green p-2 font-bold">
+						Search by rating
+					</div>
+					<div className="flex justify-center space-x-2">
+						<select
+							onChange={onChangeSearchRating}
+							className="text-lg bg-green p-3 rounded-md shadow-lg w-full focus:outline-none placeholder:text-lg text-purple"
+						>
+							{ratings.map((rating, index) => {
+								return (
+									<option key={index} value={rating}>
+										{rating}
+									</option>
+								);
+							})}
+						</select>
+						<button
+							type="button"
+							onClick={findByRating}
+							className=" justify-center gap-x-1.5 rounded-md p-1 text-md text-green bg-dark-green font-semibold shadow-sm hover:bg-pink hover:text-purple "
+						>
+							Search
+						</button>
+					</div>
 				</div>
 			</div>
 
-			<div
-				style={{
-					display: 'flex',
-					flexWrap: 'wrap',
-					width: '50vw',
-					gap: '50px',
-					alignItems: 'flex-start',
-					marginLeft: '200px',
-				}}
-			>
+			<div className="flex flex-wrap gap-10 justify-center">
 				{movies.map((movie, index) => {
 					return (
 						<div
 							key={index}
-							style={{
-								width: '15rem',
-								height: '18rem',
-								border: '1px solid #000000',
-								borderRadius: '10px',
-								padding: '20px',
-							}}
+							className="p-5 max-w-md  border-solid rounded-lg border-purple border-3 bg-pink shadow-xl"
 						>
 							<img
 								src={movie.poster}

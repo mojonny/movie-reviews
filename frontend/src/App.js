@@ -1,4 +1,4 @@
-import './App.css';
+import './index.css';
 import AddReview from './components/addReview';
 import MoviesList from './components/moviesList';
 import Movie from './components/movie';
@@ -19,21 +19,26 @@ function App() {
 	return (
 		<div className="App">
 			<nav>
-				<ul
-					style={{
-						display: 'flex',
-						gap: '50px',
-						listStyleType: 'none',
-					}}
-				>
+				<ul className="flex z-10 w-screen gap-x-10 text-xl p-5 bg-purple text-white fixed justify-center items-center">
+					<div className="font-serif text-4xl">The Movie Search</div>
 					<li>
-						<Link to="/movies">Movies</Link>
+						<Link
+							to="/movies"
+							className="bg-dark-green p-3 rounded-xl shadow-lg font-serif hover:bg-green hover:text-purple"
+						>
+							Movies
+						</Link>
 					</li>
 					<li>
 						{user ? (
 							<button onClick={logout}>Logout User</button>
 						) : (
-							<Link to="/login">Login</Link>
+							<Link
+								to="/login"
+								className="bg-dark-green p-3 rounded-xl shadow-lg font-serif hover:bg-green hover:text-purple"
+							>
+								Login
+							</Link>
 						)}
 					</li>
 				</ul>
