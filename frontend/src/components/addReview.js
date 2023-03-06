@@ -53,22 +53,38 @@ export default function AddReview(props) {
 		}
 	};
 	return (
-		<div>
+		<div className="bg-gray h-screen w-screen flex flex-col min-h-screen text-center">
 			{submitted ? (
-				<div>
-					<h4>Review submitted successfully</h4>
-					<Link to={'/movies/' + id}>Back to Movie</Link>
+				<div className=" p-6 mx-auto shadow-lg bg-purple text-pink w-80 rounded-xl mt-10">
+					<div className="font-bold text-lg p-2 mb-5">
+						Review submitted successfully
+					</div>
+					<Link
+						className="text-white p-3 bg-dark-green rounded-lg shadow-lg hover:bg-pink hover:text-purple font-bold"
+						to={'/movies/' + id}
+					>
+						Back to Movie
+					</Link>
 				</div>
 			) : (
 				<div>
-					<label>{editing ? 'Edit' : 'Create'} Review </label>
+					<label className="text-lg font-bold">
+						{editing ? 'Edit' : 'Create'} Review:{' '}
+					</label>
 					<input
 						type="text"
 						required
 						value={review}
 						onChange={onChangeReview}
+						className="text-sm bg-green w-fill p-5 rounded-md shadow-lg placeholder:text-purple my-10"
 					/>
-					<button onClick={saveReview}> Submit Review </button>
+					<button
+						className="bg-dark-green text-white ml-3 shadow-xl p-3 rounded-lg hover:bg-pink hover:text-purple"
+						onClick={saveReview}
+					>
+						{' '}
+						Submit Review{' '}
+					</button>
 				</div>
 			)}
 		</div>

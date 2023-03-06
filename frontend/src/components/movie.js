@@ -42,47 +42,65 @@ export default function Movie(props) {
 			});
 	};
 	return (
-		<div>
+		<div className="flex flex-col items-center gap-1 bg-gray min-h-screen pb-10">
+			<div className="text-purple font-semibold text-2xl p-3">
+				Movie Details
+			</div>
+			<div className="text-purple text-lg font-sans m-0">{movie.title}</div>
 			<div>
-				<h1>Movie Details</h1>
-				<h2>{movie.title}</h2>
-				<div>
-					<img src={movie.poster} alt="movie poster" />
+				<img
+					className="rounded-lg object-contain w-60"
+					src={movie.poster}
+					alt="movie poster"
+				/>
+			</div>
+			<div className="flex flex-col justify-center">
+				<div className=" p-5 min-w-fit overflow-visible mb-3">{movie.plot}</div>
+				{props.user && (
+					<Link
+						className="bg-dark-green text-white mx-auto shadow-xl p-3 rounded-lg hover:bg-pink hover:text-purple"
+						to={'/movies/' + id + '/review'}
+					>
+						Add review
+					</Link>
+				)}
+			</div>
+			<div>
+				<div className="p-2 my-10 w-screen text-center text-pink bg-purple border-y-4 border-pink">
+					Reviews
 				</div>
-				<div>
-					<div>{movie.title}</div>
-					<div>{movie.plot}</div>
-					{props.user && (
-						<Link to={'/movies/' + id + '/review'}>Add review</Link>
-					)}
-				</div>
-				<div>
-					<h2>Reviews</h2>
-					{movie.reviews.map((review, index) => {
-						return (
-							<div key={index}>
-								<div>
-									<h4>{review.name + 'reviewed on ' + review.date}</h4>
-									<p>{review.review}</p>
-									{props.user && props.user.id === review.user_id && (
-										<div>
-											<Link
-												to={'/movies/' + id + '/review'}
-												state={{ currentReview: review }}
-											>
-												Edit
-											</Link>
-											<br />
-											<button onClick={() => deleteReview(review._id, index)}>
-												Delete
-											</button>
-										</div>
-									)}
+				{movie.reviews.map((review, index) => {
+					return (
+						<div key={index}>
+							<div className="bg-purple text-pink rounded-xl p-2 mx-10  my-2 min-w-196">
+								<div className="text-lg font-bold min-w-fit overflow-visible mb-1">
+									{review.name}
+								</div>
+								<div className="min-w-fit overflow-visible mb-1">
+									{review.review}
 								</div>
 							</div>
-						);
-					})}
-				</div>
+							{props.user && props.user.id === review.user_id && (
+								<div className="flex">
+									<Link
+										to={'/movies/' + id + '/review'}
+										state={{ currentReview: review }}
+										className="bg-dark-green text-white mx-auto shadow-xl p-3 rounded-lg hover:bg-pink hover:text-purple"
+									>
+										Edit
+									</Link>
+									<br />
+									<button
+										className="bg-dark-green text-white mx-auto shadow-xl p-3 rounded-lg hover:bg-pink hover:text-purple"
+										onClick={() => deleteReview(review._id, index)}
+									>
+										Delete
+									</button>
+								</div>
+							)}
+						</div>
+					);
+				})}
 			</div>
 		</div>
 	);

@@ -18,13 +18,19 @@ function App() {
 	}
 	return (
 		<div className="App">
-			<nav>
-				<ul className="flex z-10 w-screen gap-x-10 text-xl p-5 bg-purple text-white fixed justify-center items-center">
-					<div className="font-serif text-4xl">The Movie Search</div>
+			<nav className="pb-24 bg-gray">
+				<ul className="flex z-10 w-screen gap-x-10 border-4 rounded-b-xl border-pink text-md bg-purple shadow-lg text-white fixed px-5 items-center">
+					<Link to="/" className="font-serif text-xl">
+						The
+						<br />
+						Movie
+						<br />
+						Search
+					</Link>
 					<li>
 						<Link
 							to="/movies"
-							className="bg-dark-green p-3 rounded-xl shadow-lg font-serif hover:bg-green hover:text-purple"
+							className="bg-dark-green p-2 rounded-xl shadow-lg font-serif hover:bg-green hover:text-purple"
 						>
 							Movies
 						</Link>
@@ -35,7 +41,7 @@ function App() {
 						) : (
 							<Link
 								to="/login"
-								className="bg-dark-green p-3 rounded-xl shadow-lg font-serif hover:bg-green hover:text-purple"
+								className="bg-dark-green p-2 rounded-xl shadow-lg font-serif hover:bg-green hover:text-purple"
 							>
 								Login
 							</Link>

@@ -95,18 +95,18 @@ export default function MoviesList() {
 	}, [currentPage]);
 
 	return (
-		<div className="p-5 flex-col justify-center">
-			<div className=" bg-film bg-contain p-40 pb-64 pt-20 text-purple -mb-60 border-solid border-8 border-pink">
-				<div className="text-2xl font-bold bg-none p-5 text-white">
+		<div className="bg-gray p-5 flex-col justify-center min-h-screen">
+			<div className=" bg-film bg-contain text-purple border-solid border-8 border-pink rounded-xl p-10">
+				<div className="text-sm w-fit font-bold bg-pink text-purple rounded-xl px-2 py-2 shadow-lg">
 					Looking for a movie?
 				</div>
-				<div className="text-2xl font-bold bg-none text-white ml-10">
+				<div className="ml-16 mt-2 text-sm w-fit font-bold bg-pink text-purple rounded-xl px-2 py-2 shadow-lg">
 					We can help with that...
 				</div>
 			</div>
-			<div className="-z-10 flex gap-10 items-center max-w-fit p-5 mt-40 rounded-xl shadow-xl -translate-y-40 bg-purple m-auto">
-				<div>
-					<div className="text-3xl text-green p-2 font-bold">
+			<div className="-z-10 gap-2 items-center max-w-fit p-5 mx-auto my-2  rounded-xl shadow-xl bg-purple">
+				<div className="flex-col">
+					<div className="text-xl text-green w-fit font-bold">
 						Search by title
 					</div>
 					<div className="flex justify-center space-x-2">
@@ -115,27 +115,27 @@ export default function MoviesList() {
 							placeholder="Search by title"
 							value={searchTitle}
 							onChange={onChangeSearchTitle}
-							className="text-lg bg-green p-2 rounded-md shadow-lg w-full placeholder:text-purple"
+							className="text-sm bg-green w-32 rounded-md shadow-lg placeholder:text-purple"
 						/>
 						<button
 							type="button"
 							onClick={findByTitle}
-							className=" justify-center gap-x-1.5 rounded-md p-1 text-md text-green bg-dark-green font-semibold shadow-sm hover:bg-pink hover:text-purple "
+							className=" justify-center gap-x-1.5 rounded-md p-1 text-sm text-green bg-dark-green font-semibold shadow-sm hover:bg-pink hover:text-purple "
 						>
 							Search
 						</button>
 					</div>
 				</div>
 
-				<div className="text-lg text-green font-bold">OR</div>
+				<div className="text-xs text-green p-2">Or</div>
 				<div className="flex-col">
-					<div className="text-3xl text-green p-2 font-bold">
+					<div className="text-xl text-green w-fit font-bold">
 						Search by rating
 					</div>
 					<div className="flex justify-center space-x-2">
 						<select
 							onChange={onChangeSearchRating}
-							className="text-lg bg-green p-3 rounded-md shadow-lg w-full focus:outline-none placeholder:text-lg text-purple"
+							className="text-sm bg-green w-32 rounded-md shadow-lg placeholder:text-purple"
 						>
 							{ratings.map((rating, index) => {
 								return (
@@ -148,7 +148,7 @@ export default function MoviesList() {
 						<button
 							type="button"
 							onClick={findByRating}
-							className=" justify-center gap-x-1.5 rounded-md p-1 text-md text-green bg-dark-green font-semibold shadow-sm hover:bg-pink hover:text-purple "
+							className=" justify-center gap-x-1.5 rounded-md p-1 text-sm text-green bg-dark-green font-semibold shadow-sm hover:bg-pink hover:text-purple"
 						>
 							Search
 						</button>
@@ -161,17 +161,27 @@ export default function MoviesList() {
 					return (
 						<div
 							key={index}
-							className="p-5 max-w-md  border-solid rounded-lg border-purple border-3 bg-pink shadow-xl"
+							className="p-5 h-fit max-w-md border-solid rounded-lg border-purple border-3 bg-pink shadow-xl"
 						>
+							<div className="text-purple font-extrabold text-center">
+								{movie.title}
+							</div>
 							<img
 								src={movie.poster}
 								alt="movie poster"
-								style={{ height: '50px', width: '50px' }}
+								className="object-contain h-80 rounded-md mx-auto my-3 shadow-xl"
 							/>
-							<div>{movie.title}</div>
-							<div>Rating:{movie.rated}</div>
-							<div>{movie.plot}</div>
-							<Link to={'/movies/' + movie._id}>View Reviews</Link>
+
+							<div className="text-xs font-bold">Rating:{movie.rated}</div>
+							<div className="text-sm font-serif h-20 py-3 px-3 overflow-scroll my-3 border-2 border-purple rounded-md">
+								{movie.plot}
+							</div>
+							<Link
+								className="text-bold bg-dark-green text-white p-3 shadow-lg rounded-lg mx-auto"
+								to={'/movies/' + movie._id}
+							>
+								View Reviews
+							</Link>
 						</div>
 					);
 				})}

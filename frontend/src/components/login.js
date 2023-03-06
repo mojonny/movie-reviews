@@ -22,7 +22,7 @@ export default function Login(props) {
 		navigate('/');
 	};
 	return (
-		<div className="bg-pink p-5 pt-32 min-w-full min-h-screen fixed">
+		<div className="bg-gray p-5 pt-10 min-w-full min-h-screen fixed">
 			<div className="flex-col bg-dark-green p-5 w-80 rounded-xl shadow-xl mx-auto">
 				<div>
 					<label className="font-bold p-5">Username </label>
